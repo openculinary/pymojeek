@@ -62,8 +62,8 @@ class Search:
             total: Optional[int] = None,
         ) -> None:
             results = results or []
-            self._query_time = float(query_time)
-            self._total = int(total)
+            self._query_time = float(query_time) if query_time else None
+            self._total = int(total) if total else None
             self.data = [Search.Result.parse(result) for result in results]
 
         @staticmethod
