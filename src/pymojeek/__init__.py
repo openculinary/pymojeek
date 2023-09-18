@@ -78,11 +78,13 @@ class Search:
         def query_time(self) -> Optional[timedelta]:
             if self._query_time is not None:
                 return timedelta(seconds=self._query_time)
+            return None
 
         @property
         def total(self) -> Optional[int]:
             if self._total is not None:
                 return self._total
+            return None
 
     def __init__(self, api_key: str, safe_search: bool = True) -> None:
         self.api_key = api_key
