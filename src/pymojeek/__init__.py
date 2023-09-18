@@ -62,8 +62,8 @@ class Search:
             total: Optional[int] = None,
         ) -> None:
             results = results or []
-            self._query_time = timedelta(seconds=query_time) if query_time else None
-            self._total = int(total) if total else None
+            self._query_time = query_time
+            self._total = total
             self.data = [Search.Result.parse(result) for result in results]
 
         @staticmethod
@@ -76,11 +76,13 @@ class Search:
 
         @property
         def query_time(self) -> Optional[timedelta]:
-            return self._query_time
+            if self._query_time is not None:
+                return timedelta(seconds=self._query_time)
 
         @property
         def total(self) -> Optional[int]:
-            return self._total
+            if self._total is not None:
+                return self._total
 
     def __init__(self, api_key: str, safe_search: bool = True) -> None:
         self.api_key = api_key
