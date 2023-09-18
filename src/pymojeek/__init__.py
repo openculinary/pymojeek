@@ -1,3 +1,8 @@
+"""
+Client implementation for the Mojeek Search API, based on the
+documentation available at https://www.mojeek.co.uk/support/api/search/
+"""
+
 from collections import UserList
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -10,9 +15,12 @@ from urllib.request import Request, urlopen
 
 
 class Search:
-    """
-    Client implementation for the Mojeek Search API, based on the
-    documentation available at https://www.mojeek.co.uk/support/api/search/
+    """Client for the Mojeek Search API
+
+    An API key is required; see the developer documentation for details:
+    https://www.mojeek.co.uk/services/search/web-search-api/
+
+    Safe search is enabled by default.
     """
 
     SEARCH_URL: str = "https://www.mojeek.com/search"
@@ -20,6 +28,8 @@ class Search:
 
     @dataclass
     class Result:
+        """A single search result returned by the Mojeek Search API"""
+
         url: str
         title: str
         description: str
@@ -34,6 +44,7 @@ class Search:
 
         @staticmethod
         def parse(data: Dict[str, Any]) -> "Search.Result":
+            """Transform a search result dictionary into a Result object"""
             return Search.Result(
                 url=data["url"],
                 title=data["title"],
@@ -55,6 +66,8 @@ class Search:
             )
 
     class Results(UserList[Result]):
+        """Query results and metadata returned by the Mojeek Search API"""
+
         def __init__(
             self,
             results: Optional[Iterable[Dict[str, Any]]] = None,
@@ -68,6 +81,7 @@ class Search:
 
         @staticmethod
         def parse(data: Dict[str, Any]) -> "Search.Results":
+            """Transform a search response dictionary into a Results object"""
             return Search.Results(
                 results=data["results"],
                 query_time=data["head"].get("timer"),
@@ -76,12 +90,16 @@ class Search:
 
         @property
         def query_time(self) -> Optional[timedelta]:
+            """Time taken to perform a search query (server-side)"""
             if self._query_time is not None:
                 return timedelta(seconds=self._query_time)
             return None
 
         @property
         def total(self) -> Optional[int]:
+            """Total number of search results for the query; this value may be
+            greater than the number of results included in an individual search
+            response, and in some cases may be an approximation."""
             if self._total is not None:
                 return self._total
             return None
@@ -97,7 +115,8 @@ class Search:
         start: Optional[int] = None,
         count: Optional[int] = None,
     ) -> "Search.Results":
-        # Prepare search parameters
+        """Performs a synchronous web search using the Mojeek Search API and
+        returns a Python object instance representing the results."""
         params = {
             "api_key": self.api_key,
             "fmt": "json",
@@ -110,7 +129,6 @@ class Search:
         if self.safe_search is False:
             params["safe"] = "0"
 
-        # Perform API call
         request = Request(
             method="GET",
             url=self.SEARCH_URL + "?" + urlencode(params),
