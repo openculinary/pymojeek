@@ -88,7 +88,7 @@ class Search:
 
     def __init__(self, api_key: str, safe_search: bool = True) -> None:
         self.api_key = api_key
-        self.safe_search = True
+        self.safe_search = safe_search
 
     def search(
         self,
