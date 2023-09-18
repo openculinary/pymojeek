@@ -62,7 +62,7 @@ class Search:
             total: Optional[int] = None,
         ) -> None:
             results = results or []
-            self._query_time = timedelta(query_time) if query_time else None
+            self._query_time = timedelta(seconds=query_time) if query_time else None
             self._total = int(total) if total else None
             self.data = [Search.Result.parse(result) for result in results]
 
