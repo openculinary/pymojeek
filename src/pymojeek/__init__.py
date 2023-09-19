@@ -8,7 +8,7 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from urllib.parse import quote as urlquote, urlencode
 from urllib.request import Request, urlopen
@@ -114,6 +114,8 @@ class Search:
         /,
         start: Optional[int] = None,
         count: Optional[int] = None,
+        include_domains: List[str] = [],
+        exclude_domains: List[str] = [],
     ) -> "Search.Results":
         """Performs a synchronous web search using the Mojeek Search API and
         returns a Python object instance representing the results."""
@@ -126,6 +128,10 @@ class Search:
             params["s"] = str(int(start))
         if count is not None:
             params["t"] = str(int(count))
+        if include_domains:
+            params["fi"] = ",".join(include_domains)
+        if exclude_domains:
+            params["fe"] = ",".join(exclude_domains)
         if self.safe_search is False:
             params["safe"] = "0"
 
