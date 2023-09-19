@@ -74,7 +74,7 @@ class Search:
             query: Optional[str] = None,
             query_time: Optional[float] = None,
             total: Optional[int] = None,
-        ) -> None:
+        ):
             results = results or []
             self._query = str(query) if query else None
             self._query_time = float(query_time) if query_time else None
@@ -114,7 +114,7 @@ class Search:
                 return self._total
             return None
 
-    def __init__(self, api_key: str, safe_search: bool = True) -> None:
+    def __init__(self, api_key: str, safe_search: bool = True):
         self.api_key = api_key
         self.safe_search = safe_search
 
