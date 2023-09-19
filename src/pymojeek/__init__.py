@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 import json
 from typing import Any, Dict, List, Optional
 
-from urllib.parse import quote as urlquote, urlencode
+from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 
@@ -133,7 +133,7 @@ class Search:
         params = {
             "api_key": self.api_key,
             "fmt": "json",
-            "q": urlquote(query),
+            "q": query,
         }
         if start is not None:
             params["s"] = str(int(start))
