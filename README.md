@@ -10,5 +10,5 @@ from pymojeek import Search
 client = Search(api_key=...)
 results = client.search("pymojeek")
 
-print(f"Found {len(results)} for query 'pymojeek'")
+print(f"Found {len(results)} for query '{results.query}'")
 ```

@@ -71,10 +71,12 @@ class Search:
         def __init__(
             self,
             results: Optional[Iterable[Dict[str, Any]]] = None,
+            query: Optional[str] = None,
             query_time: Optional[float] = None,
             total: Optional[int] = None,
         ) -> None:
             results = results or []
+            self._query = str(query) if query else None
             self._query_time = float(query_time) if query_time else None
             self._total = int(total) if total else None
             self.data = [Search.Result.parse(result) for result in results]
@@ -84,9 +86,17 @@ class Search:
             """Transform a search response dictionary into a Results object"""
             return Search.Results(
                 results=data["results"],
+                query=data["head"].get("query"),
                 query_time=data["head"].get("timer"),
                 total=data["head"].get("results"),
             )
+
+        @property
+        def query(self) -> Optional[str]:
+            """The query string that was used to produce this resultset"""
+            if self._query is not None:
+                return self._query
+            return None
 
         @property
         def query_time(self) -> Optional[timedelta]:
