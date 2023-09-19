@@ -126,6 +126,7 @@ class Search:
         count: Optional[int] = None,
         include_domains: Optional[List[str]] = None,
         exclude_domains: Optional[List[str]] = None,
+        exclude_words: Optional[List[str]] = None,
     ) -> "Search.Results":
         """Performs a synchronous web search using the Mojeek Search API and
         returns a Python object instance representing the results."""
@@ -142,6 +143,8 @@ class Search:
             params["fi"] = ",".join(include_domains)
         if exclude_domains is not None:
             params["fe"] = ",".join(exclude_domains)
+        if exclude_words is not None:
+            params["qm"] = " ".join(exclude_words)
         if self.safe_search is False:
             params["safe"] = "0"
 
