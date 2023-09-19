@@ -24,7 +24,7 @@ class Search:
     """
 
     SEARCH_URL: str = "https://www.mojeek.com/search"
-    USER_AGENT: str = "PyMojeek/0.1"
+    USER_AGENT: str = "PyMojeek/0.1.1"
 
     @dataclass
     class Result:
