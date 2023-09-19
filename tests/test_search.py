@@ -17,6 +17,9 @@ class SearchTest(TestCase):
         mock_urlopen.return_value = SearchTest.MockResponse()
 
         client = Search(api_key="000000000000000000000000")
-        client.search("testing")
+        client.search("testing testing one two three")
 
         self.assertTrue(mock_urlopen.called)
+        outbound_request = mock_urlopen.call_args_list[0].args[0]
+        requested_url = outbound_request.get_full_url()
+        self.assertIn("&q=testing+testing+one+two+three", requested_url)
