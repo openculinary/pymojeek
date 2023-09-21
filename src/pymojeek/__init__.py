@@ -23,9 +23,6 @@ class Search:
     Safe search is enabled by default.
     """
 
-    SEARCH_URL: str = "https://www.mojeek.com/search"
-    USER_AGENT: str = "PyMojeek/0.1.1"
-
     @dataclass
     class Result:
         """A single search result returned by the Mojeek Search API"""
@@ -150,8 +147,8 @@ class Search:
 
         request = Request(
             method="GET",
-            url=self.SEARCH_URL + "?" + urlencode(params),
-            headers={"User-Agent": self.USER_AGENT},
+            url="https://www.mojeek.com/search" + "?" + urlencode(params),
+            headers={"User-Agent": "PyMojeek/0.1.1"},
         )
         response = urlopen(request)
         response_data = json.loads(response.read().decode("utf-8"))["response"]
