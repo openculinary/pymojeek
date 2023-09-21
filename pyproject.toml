@@ -15,4 +15,4 @@ name = "pymojeek"
 readme = { content-type = "text/markdown", file = "README.md" }
 requires-python = ">= 3.7"
 urls = { Homepage = "https://pypi.org/project/pymojeek/", Source = "https://github.com/openculinary/pymojeek.git/" }
-version = "0.1.1"
+version = "0.1.2"
