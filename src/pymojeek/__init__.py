@@ -114,7 +114,7 @@ class Search:
                 return self._total
             return None
 
-    def __init__(self, api_key: str, safe_search: bool = True):
+    def __init__(self, api_key: str, safe_search: Optional[bool] = None):
         self.api_key = api_key
         self.safe_search = safe_search
 
@@ -145,8 +145,8 @@ class Search:
             params["fe"] = ",".join(exclude_domains)
         if exclude_words is not None:
             params["qm"] = " ".join(exclude_words)
-        if self.safe_search is False:
-            params["safe"] = "0"
+        if self.safe_search is not None:
+            params["safe"] = "1" if self.safe_search else "0"
 
         request = Request(
             method="GET",
