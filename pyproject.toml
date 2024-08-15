@@ -7,7 +7,9 @@ authors = [
     {name = "James Addison", email = "james@reciperadar.com"},
 ]
 classifiers=[
-    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)"
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search"
 ]
 description = "Python library for the Mojeek API"
 license = { text = "AGPL-3.0-or-later" }
