@@ -111,7 +111,7 @@ class Search:
                 return self._total
             return None
 
-    def __init__(self, api_key: str, safe_search: Optional[bool] = None):
+    def __init__(self, *, api_key: str, safe_search: Optional[bool] = None):
         self.api_key = api_key
         self.safe_search = safe_search
 
