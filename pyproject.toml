@@ -15,6 +15,6 @@ description = "Python library for the Mojeek API"
 license = { text = "AGPL-3.0-or-later" }
 name = "pymojeek"
 readme = { content-type = "text/markdown", file = "README.md" }
-requires-python = ">= 3.7"
+requires-python = ">= 3.8"
 urls = { Homepage = "https://pypi.org/project/pymojeek/", Source = "https://github.com/openculinary/pymojeek.git/" }
 version = "0.1.2"
