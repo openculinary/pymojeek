@@ -119,6 +119,7 @@ class Search:
         self,
         query: str,
         /,
+        *,
         start: Optional[int] = None,
         count: Optional[int] = None,
         include_domains: Optional[List[str]] = None,
