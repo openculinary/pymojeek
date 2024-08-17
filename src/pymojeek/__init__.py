@@ -149,7 +149,7 @@ class Search:
         request = Request(
             method="GET",
             url="https://www.mojeek.com/search" + "?" + urlencode(params),
-            headers={"User-Agent": "PyMojeek/0.1.2"},
+            headers={"User-Agent": "PyMojeek/0.2.0"},
         )
         response = urlopen(request)
         response_data = json.loads(response.read().decode("utf-8"))["response"]
