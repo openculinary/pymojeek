@@ -52,7 +52,7 @@ def json_response() -> Dict[str, Any]:
                     "mres": 1,
                     "cats": "cat1|cat3",
                     "image": {
-                        "url": "https://example.org",
+                        "url": "https://example.test",
                         "width": 64,
                         "height": 64,
                     },

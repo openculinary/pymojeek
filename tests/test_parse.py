@@ -23,7 +23,7 @@ class ParseTests(TestCase):
             crawled_at=datetime(2023, 9, 18, 12, 45),
             modified_at=datetime(2023, 9, 18, 12, 45),
             published_at=datetime(2023, 9, 18, 12, 45),
-            image_url="https://example.org",
+            image_url="https://example.test",
             image_width=64,
             image_height=64,
         )
